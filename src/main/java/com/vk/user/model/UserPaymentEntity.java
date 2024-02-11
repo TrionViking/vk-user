@@ -1,6 +1,7 @@
 package com.vk.user.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,24 +13,9 @@ import org.hibernate.annotations.UuidGenerator;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "user_address")
-public class UserAddressEntity extends BaseEntity{
+public class UserPaymentEntity {
 
     @Id
     @UuidGenerator
     private String id;
-
-    @Column
-    private String provinceCode;
-
-    @Column
-    private String districtCode;
-
-    @Column
-    private String wardCode;
-
-    @Column
-    private String street;
-
-    @Column
-    private Long userId;
 }
