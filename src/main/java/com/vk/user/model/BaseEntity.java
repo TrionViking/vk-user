@@ -1,10 +1,7 @@
 package com.vk.user.model;
 
 import com.vk.user.constant.ECommonStatus;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,7 +24,6 @@ public abstract class BaseEntity {
     @Column(name = "updated_by")
     private String updateBy;
 
-    @Column(name = "status")
-    @Enumerated(value = EnumType.STRING)
-    private ECommonStatus status;
+    @Version
+    private Integer version;
 }

@@ -1,5 +1,6 @@
 package com.vk.user.model;
 
+import com.vk.user.constant.ECommonStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +13,9 @@ import org.hibernate.annotations.UuidGenerator;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "user_address")
+@Table(indexes = {
+        @Index(columnList = "userId")
+})
 public class UserAddressEntity extends BaseEntity{
 
     @Id
@@ -32,4 +36,8 @@ public class UserAddressEntity extends BaseEntity{
 
     @Column
     private Long userId;
+
+    @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
+    private ECommonStatus status;
 }

@@ -1,7 +1,7 @@
 package com.vk.user.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.vk.user.constant.ECommonStatus;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,10 +12,20 @@ import org.hibernate.annotations.UuidGenerator;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "user_address")
+@Entity
+@Table(indexes = {
+        @Index(columnList = "userId")
+})
 public class UserPaymentEntity {
 
     @Id
     @UuidGenerator
     private String id;
+
+    @Column
+    private Long userId;
+
+    @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
+    private ECommonStatus status;
 }

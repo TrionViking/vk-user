@@ -1,5 +1,6 @@
 package com.vk.user.model;
 
+import com.vk.user.constant.ECommonStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,6 +24,7 @@ public class RoleEntity extends BaseEntity{
     @Column
     private String name;
 
-    @Column
-    private Boolean isUser;
+    @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
+    private ECommonStatus status;
 }

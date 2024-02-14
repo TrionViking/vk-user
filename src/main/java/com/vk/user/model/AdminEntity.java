@@ -1,5 +1,6 @@
 package com.vk.user.model;
 
+import com.vk.user.constant.ECommonStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,4 +32,8 @@ public class AdminEntity extends BaseEntity{
 
     @Column
     private String avatar;
+
+    @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
+    private ECommonStatus status;
 }

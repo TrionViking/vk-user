@@ -1,5 +1,6 @@
 package com.vk.user.model;
 
+import com.vk.user.constant.EAccountStatus;
 import com.vk.user.constant.EAccountType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -36,4 +37,11 @@ public class AccountEntity extends BaseEntity{
 
     @Column(nullable = false)
     private Integer roleId;
+
+    @Column(nullable = false, columnDefinition = "boolean default true")
+    private Boolean isUser;
+
+    @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
+    private EAccountStatus status;
 }
