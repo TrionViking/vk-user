@@ -30,21 +30,5 @@ public class AuthController extends BaseController{
     }
 
 
-    @PostMapping("/u")
-    public ResponseEntity u() {
-        return success("user");
-    }
-
-    @PostMapping("/s")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('SHOP')")
-    public ResponseEntity s() {
-        return success("shop");
-    }
-
-    @PostMapping("/a")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity a() {
-        return success("admin");
-    }
 
 }

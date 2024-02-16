@@ -1,4 +1,4 @@
-package com.vk.user.controller;
+package com.vk.user.controller.adivce;
 
 
 import com.vk.user.constant.ErrorCode;
@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,28 +30,31 @@ public class ExceptionHandlerController {
 
     private final TranslatorUtil translatorUtil;
 
-    @ExceptionHandler(BindException.class)
-    public ResponseEntity<?> handleResourceNotFoundException(BindException ex) {
-        log.error(ex.getMessage());
-        return ResponseEntity.status(400).build();
-    }
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
         log.error(ex.getMessage());
-        return ResponseEntity.status(400).build();
+        String message = null;
+        if (!ex.getBindingResult().getAllErrors().isEmpty()){
+            message = ex.getBindingResult().getAllErrors().get(0).getDefaultMessage();
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BaseResponse.builder()
+                .meta(BaseResponse.Meta.builder()
+                        .code(ErrorCode.BAD_REQUEST.getValue())
+                        .message(message)
+                        .build())
+                .build());
     }
 
-//    @ExceptionHandler(AuthenticationException.class)
-//    public ResponseEntity<?> handleAuthenticationException(AuthenticationException ex) {
-//        log.error(ex.getMessage());
-//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(BaseResponse.builder()
-//                .meta(BaseResponse.Meta.builder()
-//                        .code(ErrorCode.UNAUTHORIZED.getValue())
-//                        .message(translatorUtil.getMessage(ErrorCode.UNAUTHORIZED.getValue()))
-//                        .build())
-//                .build());
-//    }
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<?> handleBadCredentialsException(BadCredentialsException ex, WebRequest request) {
+        log.error(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(BaseResponse.builder()
+                .meta(BaseResponse.Meta.builder()
+                        .code(ErrorCode.UNAUTHORIZED.getValue())
+                        .message(translatorUtil.getMessage(ErrorCode.UNAUTHORIZED.getValue()))
+                        .build())
+                .build());
+    }
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<?> handleAccessDeniedException(AccessDeniedException ex, WebRequest request) {

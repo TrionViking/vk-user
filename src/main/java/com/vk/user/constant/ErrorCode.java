@@ -13,7 +13,9 @@ public enum ErrorCode {
     SERVER_ERROR(500),
 
     USER_NAME_NOT_FOUND(4000001),
-    ROLE_NOT_FOUND(4000002);
+    ROLE_NOT_FOUND(4000002),
+    USERNAME_EXIST(4000003),
+    EMAIL_EXIST(4000004);
 
     private static final Map<Integer, ErrorCode> mapByValue;
     private Integer value;

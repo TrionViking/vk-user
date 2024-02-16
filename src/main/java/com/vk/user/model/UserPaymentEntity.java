@@ -12,7 +12,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity(name = "user_payment")
 @Table(indexes = {
         @Index(columnList = "userId")
 })

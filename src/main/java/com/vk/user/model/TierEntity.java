@@ -1,5 +1,6 @@
 package com.vk.user.model;
 
+import com.vk.user.constant.ECommonStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,4 +29,8 @@ public class TierEntity extends BaseEntity{
 
     @Column
     private String url;
+
+    @Column
+    @Enumerated(value = EnumType.STRING)
+    private ECommonStatus status;
 }

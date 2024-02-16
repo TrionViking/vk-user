@@ -1,7 +1,5 @@
 package com.vk.user.service.impl;
 
-import com.vk.user.constant.ErrorCode;
-import com.vk.user.exception.BusinessException;
 import com.vk.user.model.AccountEntity;
 import com.vk.user.model.RoleEntity;
 import com.vk.user.repository.AccountRepository;
@@ -32,7 +30,7 @@ public class JpaUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AccountEntity account = accountRepository.findByUsername(username)
-                .orElseThrow(() -> new BusinessException(ErrorCode.USER_NAME_NOT_FOUND));
+                .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
         RoleEntity role = roleRepository.findById(account.getRoleId())
                 .orElse(null);
 

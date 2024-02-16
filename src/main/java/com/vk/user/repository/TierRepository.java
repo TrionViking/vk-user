@@ -1,15 +1,16 @@
 package com.vk.user.repository;
 
 import com.vk.user.constant.ECommonStatus;
-import com.vk.user.model.RoleEntity;
+import com.vk.user.model.TierEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface RoleRepository extends JpaRepository<RoleEntity, Integer> {
+public interface TierRepository extends JpaRepository<TierEntity, Integer> {
 
-    Optional<RoleEntity> findByCodeAndStatus(String code, ECommonStatus status);
+    List<TierEntity> findByStatus(ECommonStatus status);
 
 }
