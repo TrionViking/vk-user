@@ -5,6 +5,13 @@ import java.util.Map;
 
 public enum ErrorCode {
 
+    SUCCESS(200),
+    UNAUTHORIZED(401),
+    ACCESS_DENIED(403),
+    NOT_FOUND(404),
+    BAD_REQUEST(400),
+    SERVER_ERROR(500),
+
     USER_NAME_NOT_FOUND(4000001),
     ROLE_NOT_FOUND(4000002);
 

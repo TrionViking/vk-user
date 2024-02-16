@@ -5,5 +5,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/v1/user")
-public class UserController {
+public class UserController extends BaseController{
 }

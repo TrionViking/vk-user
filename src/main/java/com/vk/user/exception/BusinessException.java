@@ -1,7 +1,10 @@
 package com.vk.user.exception;
 
 import com.vk.user.constant.ErrorCode;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
 public class BusinessException extends RuntimeException{
 
     protected Integer code;

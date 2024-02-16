@@ -1,6 +1,5 @@
 package com.vk.user.model;
 
-import com.vk.user.constant.ECommonStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,26 +10,22 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "admin")
-public class AdminEntity extends BaseEntity{
+@Entity(name = "tier")
+public class TierEntity extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column
-    private String firstName;
+    private String code;
 
     @Column
-    private String lastName;
+    private String name;
 
     @Column
-    private String phoneNumber;
+    private Boolean isDefault;
 
     @Column
-    private Boolean sex;
-
-    @Column
-    private String avatar;
-
+    private String url;
 }

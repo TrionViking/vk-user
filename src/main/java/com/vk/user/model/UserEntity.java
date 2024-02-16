@@ -1,11 +1,15 @@
 package com.vk.user.model;
 
 import com.vk.user.constant.ECommonStatus;
+import com.vk.user.constant.EIdType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -33,7 +37,19 @@ public class UserEntity extends BaseEntity{
     @Column
     private String avatar;
 
-    @Column(name = "status")
+    @Column
+    private LocalDate dob;
+
+    @Column
+    private Integer tierId;
+
+    @Column
+    private LocalDateTime registerDate;
+
+    @Column
     @Enumerated(value = EnumType.STRING)
-    private ECommonStatus status;
+    private EIdType idType;
+
+    @Column
+    private String idNo;
 }

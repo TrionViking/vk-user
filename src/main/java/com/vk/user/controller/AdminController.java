@@ -5,5 +5,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/v1/admin")
-public class AdminController {
+public class AdminController extends BaseController{
 }

@@ -28,7 +28,7 @@ public class AccountEntity extends BaseEntity{
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(name = "type")
+    @Column
     @Enumerated(value = EnumType.STRING)
     private EAccountType type;
 

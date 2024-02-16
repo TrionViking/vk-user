@@ -25,7 +25,7 @@ public class UserPaymentEntity {
     @Column
     private Long userId;
 
-    @Column(name = "status")
+    @Column
     @Enumerated(value = EnumType.STRING)
     private ECommonStatus status;
 }

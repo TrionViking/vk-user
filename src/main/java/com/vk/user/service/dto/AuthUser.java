@@ -2,7 +2,6 @@ package com.vk.user.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vk.user.constant.EAccountStatus;
-
 import com.vk.user.model.AccountEntity;
 import com.vk.user.model.AdminEntity;
 import com.vk.user.model.RoleEntity;
@@ -12,12 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.management.relation.Role;
-import java.util.ArrayList;
-import java.util.Collection;
-
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Data
 @Builder
@@ -31,8 +25,6 @@ public class AuthUser implements UserDetails {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private Boolean sex;
-    private String avatar;
     private String email;
     private String username;
     @JsonIgnore
@@ -61,21 +53,24 @@ public class AuthUser implements UserDetails {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.phoneNumber = user.getPhoneNumber();
-        this.sex = user.getSex();
-        this.avatar = user.getAvatar();
+        this.attributes = new LinkedHashMap<>();
+        attributes.put("sex", user.getSex());
+        attributes.put("avatar", user.getAvatar());
+
     }
 
     public void setAdminInfo(AdminEntity admin) {
         this.firstName = admin.getFirstName();
         this.lastName = admin.getLastName();
         this.phoneNumber = admin.getPhoneNumber();
-        this.sex = admin.getSex();
-        this.avatar = admin.getAvatar();
+        this.attributes = new LinkedHashMap<>();
+        attributes.put("sex", admin.getSex());
+        attributes.put("avatar", admin.getAvatar());
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
@@ -85,7 +80,7 @@ public class AuthUser implements UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override

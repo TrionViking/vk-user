@@ -24,7 +24,7 @@ public class RoleEntity extends BaseEntity{
     @Column
     private String name;
 
-    @Column(name = "status")
+    @Column
     @Enumerated(value = EnumType.STRING)
     private ECommonStatus status;
 }

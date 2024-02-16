@@ -35,5 +35,11 @@ kafka:
   broker: ${KAFKA_BROKER:}
 
 
+jwt:
+  expire-time: ${JWT_EXPIRE_TIME:}
+  signing:
+    key: ${JWT_KEY:}
+
+
 
 

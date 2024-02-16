@@ -3,3 +3,5 @@ JDBC_USERNAME: root
 JDBC_PASSWORD: 123456
 
 KAFKA_BROKER: localhost:9092
+JWT_EXPIRE_TIME: 10000
+JWT_KEY: TrionVikingAnhleTrionVikingAnhleTrionVikingAnhle

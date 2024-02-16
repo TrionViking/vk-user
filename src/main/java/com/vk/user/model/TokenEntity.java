@@ -2,9 +2,7 @@ package com.vk.user.model;
 
 import com.vk.user.constant.ECommonStatus;
 import com.vk.user.constant.ETokenType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,19 +16,25 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "account")
+@Entity(name = "token")
+@Table(indexes = {
+        @Index(columnList = "userId")
+})
 public class TokenEntity {
 
     @Id
     @UuidGenerator
     private String token;
 
-    @Column(name = "type")
+    @Column
+    private Long userId;
+
+    @Column
     private ETokenType type;
 
-    @Column(name = "expire_at")
+    @Column
     private LocalDateTime expireAt;
 
-    @Column(name = "status")
+    @Column
     private ECommonStatus status;
 }
